@@ -241,7 +241,7 @@ class ChannelAction {
       const pubkey = channel.pubkeyAtHost.split('@')[0];
       const host = channel.pubkeyAtHost.split('@')[1];
       await this.connectToPeer({ host, pubkey });
-      await this.openChannel({ pubkey, amount });
+      //await this.openChannel({ pubkey, amount });
     } catch (err) {
       this._nav.goChannelCreate();
       this._notification.display({ msg: 'Creating channel failed!', err });

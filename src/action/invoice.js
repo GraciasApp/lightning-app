@@ -85,13 +85,20 @@ class InvoiceAction {
    */
   checkAmount({ satAmount }) {
     const { channels } = this._store;
+
     const hasInbound = channels.find(c => c.remoteBalance >= satAmount);
     if (hasInbound) {
-      return;
+      return; 
     }
-    this._notification.display({
-      msg: "You don't have enough inbound capacity to receive this payment.",
-    });
+    if (channels.length === 0) {
+      this._notification.display({
+        msg: "You don't have any open channels to accept payment.",
+      });
+    } else {
+      this._notification.display({
+        msg: "You don't have enough inbound capacity to receive this payment.",
+      });
+    }
   }
 
   /**
